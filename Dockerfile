@@ -2,7 +2,7 @@
 # который бы собирал нам проект
 # потому что нам лень писать каждый раз npm run build перед
 # сборкой докерфайла билдить его вручную
-FROM node:alpine AS builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
@@ -15,12 +15,15 @@ RUN npm run build
 # запускаем nginx в отдельном контейнере
 FROM nginx:alpine
 
-# копируем сертификаты в контейнер, ага
+COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d
+
 COPY ./fullchain.pem /etc/letsencrypt/live/smokingplaya.ru/fullchain.pem
 COPY ./privkey.pem /etc/letsencrypt/live/smokingplaya.ru/privkey.pem
 
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d
+RUN mkdir -p /var/www/certbot
+# для продления
+# RUN echo "acme value" > /var/www/certbot/acme_file
 
 EXPOSE 80
 EXPOSE 443

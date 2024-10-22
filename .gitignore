@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 *.tsbuildinfo
+
+# SSL
+privkey.pem
+fullchain.pem

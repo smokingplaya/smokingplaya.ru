@@ -1,71 +1,87 @@
-import { GithubIcon } from "lucide-react";
-import {
-  PageContent,
-  PageContentText,
-  PageContentTitle,
-  PageContentSubtitle,
-  PageModel,
-  PageFooter,
-  PageFooterLink,
-  PageSkills,
-  PageSkill,
-  PageLink,
-  PageSpaceBetween,
-  PageFooterLinks,
-  PageBackground,
-  Page
-} from "./components/page";
-
-import {
-  CodeBlock,
-  noctisViola
-} from "react-code-blocks";
+import { Container } from "./components/container";
+import { Background } from "./components/background";
+import { Page } from "./components/page";
+import { Skills, Badge } from "./components/skills";
+import { HeaderWithContent } from "./components/text";
+import { Version } from "./components/version";
+import { Database } from "lucide-react";
 
 const links = {
+  background: "/icons/background.gif",
+  heart: "/icons/heart.gif",
   github: "https://github.com/smokingplaya",
-  telegram: "https://t.me/smokingplaya"
+  telegram: "https://t.me/smokingplaya",
+
+  projects: {
+    serenity: "https://t.me/serenitymcru",
+    uki: "https://github.com/smokingplaya/uki"
+  }
 }
 
 function App() {
   return (
-    <>
-      <PageBackground/>
-      <main className="w-screen h-screen flex items-center justify-center overflow-hidden">
-        <Page>
-          <PageModel/>
-          <PageContent>
-            <PageContentTitle textUnderline={true}>smokingplaya</PageContentTitle>
-            <PageContentText>16yo software engineer based in Russia 🇷🇺</PageContentText>
-            <PageContentSubtitle>The languages I use</PageContentSubtitle>
+    <Page>
+      <Background src={links.background}/>
+      <Version version="0.2"/>
+      <Container className="justify-center items-center">
+        <div className="size-auto bg-neutral-900 rounded-xl flex">
+          <div className="p-6">
+            {/* Content */}
+            <div className="space-y-2">
+              <div>
+                <h1 className="text-white text-2xl font-bold flex gap-x-1 items-center">smokingplaya <img className="h-6" src={links.heart}/></h1>
+                <h3 className="text-white/80 leading-5">16 y.o software engineer<br/>based in mother Russia</h3>
+              </div>
 
-            <PageSkills>
-              <PageSkill>❤ Rust</PageSkill>
-              <PageSkill>TypeScript</PageSkill>
-              <PageSkill>Lua</PageSkill>
-              <PageContentText>You can see my other skills on my <PageLink href={links.github}><GithubIcon className="w-5"/> GitHub</PageLink></PageContentText>
-            </PageSkills>
+            <Skills>
+              <Badge icon={<img src="/icons/rust.svg"/>} name="Rust">
+                <Badge icon={<img src="/icons/tauri.png"/>} name="Tauri" href="https://tauri.app/"/>
+                <Badge icon={<img src="/icons/actix.png"/>} name="Actix" href="https://actix.rs/"/>
+              </Badge>
+              <Badge icon={<img src="/icons/css.svg"/>} name="Web">
+                <Badge icon={<img src="/icons/fastifyjs.png"/>} name="Fastify" href="https://fastify.dev/"/>
+                <Badge icon={<img src="/icons/expressjs.png"/>} name="Express" href="https://fastify.dev/"/>
+                <Badge icon={<img src="/icons/nestjs.svg"/>} name="Nest" href="https://nestjs.com/"/>
+                <Badge icon={<img src="/icons/nextjs.svg"/>} name="Next" href="https://nextjs.org/"/>
+                <Badge icon={<img src="/icons/vitejs.png"/>} name="Vite" href="https://vite.dev/"/>
+                <Badge icon={<img src="/icons/prismajs.png"/>} name="Prisma" href="https://www.prisma.io/"/>
+                <Badge icon={<img src="/icons/reactjs.svg"/>} name="React" href="https://react.dev/"/>
+                <Badge icon={<img src="/icons/tailwind.png"/>} name="Tailwind CSS" href="https://tailwindcss.com/"/>
+              </Badge>
 
-            <PageContentSubtitle>Try <PageLink className="text-violet-300" href={links.github + "uki"}>uki</PageLink>!</PageContentSubtitle>
-            <PageContentText>Makefile-like utility based on YAML</PageContentText>
+              <Badge icon={<img src="/icons/lua.svg"/>} name="Lua">
+                <Badge icon={<img src="/icons/gmod.png"/>} name="Garry's Mod" href="https://garrysmod.com/"/>
+              </Badge>
 
-            <div className="w-72 md:w-96 xl:w-auto">
-              <CodeBlock language="bash" text={'/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/smokingplaya/uki/HEAD/misc/install.sh)"'} theme={noctisViola} showLineNumbers={true} />
+              <Badge icon={<Database/>} name="Databases">
+                <Badge icon={<img src="/icons/redis.svg"/>} name="Redis" href="https://redis.io/"/>
+                <Badge icon={<img src="/icons/sqlite.png"/>} name="SQLite" href="https://www.sqlite.org/"/>
+                <Badge icon={<img src="/icons/mysql.svg"/>} name="MySQL" href="https://www.mysql.com/"/>
+                <Badge icon={<img src="/icons/postgres.png"/>} name="PostgreSQL" href="https://www.postgresql.org/"/>
+              </Badge>
+            </Skills>
+
+            <HeaderWithContent header="Проекты">
+              <div className="flex space-x-2">
+                <Badge icon={<img src="/icons/serenity.png"/>} name="серенити" href={links.projects.serenity}/>
+              </div>
+            </HeaderWithContent>
+
+            <HeaderWithContent header="Контакты">
+              <div className="flex space-x-2">
+                <Badge icon={<img src="/icons/github.svg"/>} name="GitHub" href={links.github}/>
+                <Badge icon={<img src="/icons/telegram.png"/>} name="Telegram" href={links.telegram}/>
+              </div>
+            </HeaderWithContent>
             </div>
+          </div>
 
-            <PageSpaceBetween/>
-
-            <PageFooter>
-              <PageContentSubtitle>Other helpful links</PageContentSubtitle>
-              <PageFooterLinks>
-                <PageFooterLink href={links.github}>GitHub</PageFooterLink>
-                <PageFooterLink href={links.telegram}>Telegram</PageFooterLink>
-                <PageFooterLink href="https://contract.gosuslugi.ru/">Помочь родине 🇷🇺</PageFooterLink>
-              </PageFooterLinks>
-            </PageFooter>
-          </PageContent>
-        </Page>
-      </main>
-    </>
+          <div>
+            <img className="w-80 h-full rounded-tr-xl rounded-br-xl object-cover" src="https://openseauserdata.com/files/2a4860c5fff2240d66c8f4f20ae3eb31.jpg"/>
+          </div>
+        </div>
+      </Container>
+    </Page>
   )
 }
 

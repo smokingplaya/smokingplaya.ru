@@ -13,8 +13,7 @@ const links = {
   telegram: "https://t.me/smokingplaya",
 
   projects: {
-    serenity: "https://t.me/serenitymcru",
-    uki: "https://github.com/smokingplaya/uki"
+    riverfall: "https://t.me/riverfallmc",
   }
 }
 
@@ -22,21 +21,24 @@ function App() {
   return (
     <Page>
       <Background src={links.background}/>
-      <Version version="0.2"/>
+      <Version version="0.2.1"/>
       <Container className="justify-center items-center">
         <div className="size-auto bg-neutral-900 rounded-xl flex">
           <div className="p-6">
             {/* Content */}
             <div className="space-y-2">
               <div>
-                <h1 className="text-white text-2xl font-bold flex gap-x-1 items-center">smokingplaya <img className="h-6" src={links.heart}/></h1>
-                <h3 className="text-white/80 leading-5">16 y.o software engineer<br/>based in mother Russia</h3>
+                <h1 className="text-white text-2xl font-bold flex gap-x-3 items-center"><img className="h-6" src={links.heart}/> smokingplaya</h1>
+                <h3 className="text-white/80 leading-5">17 y.o software engineer<br/>based in mother Russia</h3>
               </div>
 
             <Skills>
               <Badge icon={<img src="/icons/rust.svg"/>} name="Rust">
-                <Badge icon={<img src="/icons/tauri.png"/>} name="Tauri" href="https://tauri.app/"/>
                 <Badge icon={<img src="/icons/actix.png"/>} name="Actix" href="https://actix.rs/"/>
+                <Badge icon={<img src="/icons/tokio.png"/>} name="Axum/Tokio" href="https://github.com/tokio-rs/axum"/>
+                <Badge icon={<img src="/icons/seaorm.png"/>} name="SeaORM" href="https://www.sea-ql.org/SeaORM/"/>
+                <Badge icon={<img src="/icons/diesel.png"/>} name="Diesel" href="https://diesel.rs/"/>
+                <Badge icon={<img src="/icons/tauri.png"/>} name="Tauri" href="https://tauri.app/"/>
               </Badge>
               <Badge icon={<img src="/icons/css.svg"/>} name="Web">
                 <Badge icon={<img src="/icons/fastifyjs.png"/>} name="Fastify" href="https://fastify.dev/"/>
@@ -63,7 +65,7 @@ function App() {
 
             <HeaderWithContent header="Проекты">
               <div className="flex space-x-2">
-                <Badge icon={<img src="/icons/serenity.png"/>} name="серенити" href={links.projects.serenity}/>
+                <Badge icon={<img src="/icons/serenity.png"/>} name="Riverfall" href={links.projects.riverfall}/>
               </div>
             </HeaderWithContent>
 
